@@ -18,10 +18,14 @@ public class ClientSocket extends Thread {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             while(true){
                 String userInput = input.readLine();
+                System.out.println("Client sent: " + userInput);
                 if(userInput.equals("exit")){ break; }
+                try{
+                    Thread.sleep(2000);
+                }
+                catch (InterruptedException ex){ System.out.println("Session client error."); }
                 output.println(userInput);
             }
-            
         }
         catch (IOException ex){
             System.out.println("Error: "+ex.getMessage());
